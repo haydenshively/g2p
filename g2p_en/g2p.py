@@ -1,21 +1,23 @@
-# -*- coding: utf-8 -*-
-# /usr/bin/python
 '''
 By kyubyong park(kbpark.linguist@gmail.com) and Jongseok Kim(https://github.com/ozmig77)
 https://www.github.com/kyubyong/g2p
 '''
+
+import codecs
+import re
+import os
+import unicodedata
+from builtins import str as unicode
+
 from nltk import pos_tag
 from nltk.corpus import cmudict
 import nltk
 from nltk.tokenize import TweetTokenizer
 word_tokenize = TweetTokenizer().tokenize
 import numpy as np
-import codecs
-import re
-import os
-import unicodedata
-from builtins import str as unicode
+
 from g2p_en.expand.number_norm import normalize_numbers
+from g2p_en.expand.time_norm import expand_time_english
 
 try:
     nltk.data.find('taggers/averaged_perceptron_tagger.zip')
@@ -148,10 +150,11 @@ class G2p(object):
     def __call__(self, text):
         # preprocessing
         text = unicode(text)
+        text = text.lower()
+        text = expand_time_english(text)
         text = normalize_numbers(text)
         text = ''.join(char for char in unicodedata.normalize('NFD', text)
                        if unicodedata.category(char) != 'Mn')  # Strip accents
-        text = text.lower()
         text = re.sub("[^ a-z'.,?!\-]", "", text)
         text = text.replace("i.e.", "that is")
         text = text.replace("e.g.", "for example")

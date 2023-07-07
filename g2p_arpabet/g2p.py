@@ -191,9 +191,10 @@ if __name__ == '__main__':
     texts = ["I have $250 in my pocket.", # number -> spell-out
              "popular pets, e.g. cats and dogs", # e.g. -> for example
              "I refuse to collect the refuse around here.", # homograph
-             "I'm an activationist."] # newly coined word
+             "I'm an activationist.", # newly coined word
+             "It's 5:00pm somewhere.", # time
+             "Mrs. Botter bought some butter."] # abbreviation
     g2p = G2p()
     for text in texts:
         out = g2p(text)
         print(out)
-

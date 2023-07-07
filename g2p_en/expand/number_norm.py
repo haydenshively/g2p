@@ -88,7 +88,7 @@ def _expand_number(m):
     return _inflect.number_to_words(num, andword='')
 
 
-def normalize_numbers(text):
+def expand_numbers(text):
     text = re.sub(_comma_number_re, _remove_commas, text)
     text = re.sub(_currency_re, _expand_currency, text)
     text = re.sub(_decimal_number_re, _expand_decimal_point, text)

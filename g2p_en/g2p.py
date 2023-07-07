@@ -16,8 +16,9 @@ from nltk.tokenize import TweetTokenizer
 word_tokenize = TweetTokenizer().tokenize
 import numpy as np
 
-from g2p_en.expand.number_norm import normalize_numbers
-from g2p_en.expand.time_norm import expand_time_english
+from g2p_en.expand.abbreviations import expand_abbreviations
+from g2p_en.expand.number_norm import expand_numbers
+from g2p_en.expand.time_norm import expand_time
 
 try:
     nltk.data.find('taggers/averaged_perceptron_tagger.zip')
@@ -151,8 +152,9 @@ class G2p(object):
         # preprocessing
         text = unicode(text)
         text = text.lower()
-        text = expand_time_english(text)
-        text = normalize_numbers(text)
+        text = expand_time(text)
+        text = expand_numbers(text)
+        text = expand_abbreviations(text)
         text = ''.join(char for char in unicodedata.normalize('NFD', text)
                        if unicodedata.category(char) != 'Mn')  # Strip accents
         text = re.sub("[^ a-z'.,?!\-]", "", text)

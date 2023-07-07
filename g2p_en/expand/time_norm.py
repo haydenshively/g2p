@@ -43,5 +43,5 @@ def _expand_time_english(match: 're.Match') -> str:
     return ' '.join(time)
 
 
-def expand_time_english(text: str) -> str:
+def expand_time(text: str) -> str:
     return re.sub(_time_re, _expand_time_english, text)

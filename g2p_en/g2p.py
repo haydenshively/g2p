@@ -16,9 +16,9 @@ from nltk.tokenize import TweetTokenizer
 word_tokenize = TweetTokenizer().tokenize
 import numpy as np
 
-from g2p_arpabet.expand.abbreviations import expand_abbreviations
-from g2p_arpabet.expand.number_norm import expand_numbers
-from g2p_arpabet.expand.time_norm import expand_time
+from g2p_en.expand.abbreviations import expand_abbreviations
+from g2p_en.expand.number_norm import expand_numbers
+from g2p_en.expand.time_norm import expand_time
 
 try:
     nltk.data.find('taggers/averaged_perceptron_tagger.zip')

@@ -7,6 +7,10 @@ license = "Apache License"
 readme = "README.md"
 keywords = ["g2p","g2p_en"]
 
+packages = [
+    { include = "g2p_en" },
+]
+
 [tool.poetry.dependencies]
 python = "^3.9"
 numpy = "^1.13.1"
